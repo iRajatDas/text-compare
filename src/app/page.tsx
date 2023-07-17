@@ -8,102 +8,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-import ReactDiffViewer from "react-diff-viewer-continued";
+import ReactDiffViewer, { DiffMethod } from "react-diff-viewer-continued";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-
-enum DiffMethod {
-  CHARS = "diffChars",
-  WORDS = "diffWords",
-  WORDS_WITH_SPACE = "diffWordsWithSpace",
-  LINES = "diffLines",
-  TRIMMED_LINES = "diffTrimmedLines",
-  SENTENCES = "diffSentences",
-  CSS = "diffCss",
-}
-
-
-
-// Default variables and style keys
-
-const defaultStyles = {
-  variables: {
-    light: {
-      diffViewerBackground: '#fff',
-      diffViewerColor: '#212529',
-      addedBackground: '#ffffff00',
-      addedColor: '#24292e',
-      removedBackground: '#ffffff00',
-      removedColor: '#24292e',
-      wordAddedBackground: '#acf2bd',
-      wordRemovedBackground: '#fdb8c0',
-      addedGutterBackground: '#cdffd8',
-      removedGutterBackground: '#ffdce0',
-      gutterBackground: '#f7f7f7',
-      gutterBackgroundDark: '#f3f1f1',
-      highlightBackground: '#fffbdd',
-      highlightGutterBackground: '#fff5b1',
-      codeFoldGutterBackground: '#dbedff',
-      codeFoldBackground: '#f1f8ff',
-      emptyLineBackground: '#fafbfc',
-      gutterColor: '#212529',
-      addedGutterColor: '#212529',
-      removedGutterColor: '#212529',
-      codeFoldContentColor: '#212529',
-      diffViewerTitleBackground: '#fafbfc',
-      diffViewerTitleColor: '#212529',
-      diffViewerTitleBorderColor: '#eee',
-    },
-    dark: {
-      diffViewerBackground: '#2e303c',
-      diffViewerColor: '#FFF',
-      addedBackground: '#044B53',
-      addedColor: 'white',
-      removedBackground: '#632F34',
-      removedColor: 'white',
-      wordAddedBackground: '#055d67',
-      wordRemovedBackground: '#7d383f',
-      addedGutterBackground: '#034148',
-      removedGutterBackground: '#632b30',
-      gutterBackground: '#2c2f3a',
-      gutterBackgroundDark: '#262933',
-      highlightBackground: '#2a3967',
-      highlightGutterBackground: '#2d4077',
-      codeFoldGutterBackground: '#21232b',
-      codeFoldBackground: '#262831',
-      emptyLineBackground: '#363946',
-      gutterColor: '#464c67',
-      addedGutterColor: '#8c8c8c',
-      removedGutterColor: '#8c8c8c',
-      codeFoldContentColor: '#555a7b',
-      diffViewerTitleBackground: '#2f323e',
-      diffViewerTitleColor: '#555a7b',
-      diffViewerTitleBorderColor: '#353846',
-    }
-  },
-  // diffContainer?: {}, // style object
-  // diffRemoved?: {}, // style object
-  // diffAdded?: {}, // style object
-  // marker?: {}, // style object
-  // emptyGutter?: {}, // style object
-  // highlightedLine?: {}, // style object
-  // lineNumber?: {}, // style object
-  // highlightedGutter?: {}, // style object
-  // contentText?: {}, // style object
-  // gutter?: {}, // style object
-  // line?: {}, // style object
-  // wordDiff?: {}, // style object
-  // wordAdded?: {}, // style object
-  // wordRemoved?: {}, // style object
-  // codeFoldGutter?: {}, // style object
-  // codeFold?: {}, // style object
-  // emptyLine?: {}, // style object
-  // content?: {}, // style object
-  // titleBlock?: {}, // style object
-  // splitView?: {}, // style object
-}
+import { defaultStyles, delay } from "@/lib/utils";
 
 const formSchema = z.object({
   original: z.string().optional(),
@@ -127,6 +37,7 @@ export default function Home() {
   });
 
   const onSubmit = async (data: FormType) => {
+    await delay(3000)
     console.table(data);
     // Perform the text comparison
     const comparisonResult = compareTexts(
@@ -254,73 +165,6 @@ export default function Home() {
           </form>
         </Form>
       </div>
-      <ColorPalette/>
     </main>
   );
 }
-
-
-
-
-
-
-
-// 
-
-const ColorSwatch = ({ color, code }) => {
-  return (
-    <div
-      style={{
-        backgroundColor: code,
-        width: "200px",
-        height: "200px",
-        margin: "10px",
-        border: "1px solid #000",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          height: "100%",
-          color: "#fff",
-        }}
-      >
-        {color}
-      </div>
-    </div>
-  );
-};
-
-const ColorPalette = () => {
-  return (
-    <div className="grid grid-col-3 py-10">
-      <ColorSwatch color="diffViewerBackground" code="#ffffff" />
-      <ColorSwatch color="diffViewerColor" code="#212529" />
-      <ColorSwatch color="addedBackground" code="#e6ffed" />
-      <ColorSwatch color="addedColor" code="#24292e" />
-      <ColorSwatch color="removedBackground" code="#ffeef0" />
-      <ColorSwatch color="removedColor" code="#24292e" />
-      <ColorSwatch color="wordAddedBackground" code="#acf2bd" />
-      <ColorSwatch color="wordRemovedBackground" code="#fdb8c0" />
-      <ColorSwatch color="addedGutterBackground" code="#cdffd8" />
-      <ColorSwatch color="removedGutterBackground" code="#ffdce0" />
-      <ColorSwatch color="gutterBackground" code="#f7f7f7" />
-      <ColorSwatch color="gutterBackgroundDark" code="#f3f1f1" />
-      <ColorSwatch color="highlightBackground" code="#fffbdd" />
-      <ColorSwatch color="highlightGutterBackground" code="#fff5b1" />
-      <ColorSwatch color="codeFoldGutterBackground" code="#dbedff" />
-      <ColorSwatch color="codeFoldBackground" code="#f1f8ff" />
-      <ColorSwatch color="emptyLineBackground" code="#fafbfc" />
-      <ColorSwatch color="gutterColor" code="#212529" />
-      <ColorSwatch color="addedGutterColor" code="#212529" />
-      <ColorSwatch color="removedGutterColor" code="#212529" />
-      <ColorSwatch color="codeFoldContentColor" code="#212529" />
-      <ColorSwatch color="diffViewerTitleBackground" code="#fafbfc" />
-      <ColorSwatch color="diffViewerTitleColor" code="#212529" />
-      <ColorSwatch color="diffViewerTitleBorderColor" code="#eee" />
-    </div>
-  );
-};
