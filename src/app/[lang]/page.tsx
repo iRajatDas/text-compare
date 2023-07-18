@@ -8,7 +8,7 @@ const Home = async ({ params: { lang } }: TypeLang) => {
   return (
     <div className="">
       <div className="py-12 px-4 space-y-6">
-        <div className="border-2 h-48 grid place-items-center max-w-7xl mx-auto">
+        <div className="border h-48 grid place-items-center max-w-7xl mx-auto">
           Ad Placeholder
         </div>
         <div className="">

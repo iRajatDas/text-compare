@@ -7,6 +7,10 @@ html, body {
   width: 100%;
 }
 
+form table > tbody > tr > td > pre {
+  line-height: normal !important;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

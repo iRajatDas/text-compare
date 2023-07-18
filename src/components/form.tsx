@@ -91,7 +91,7 @@ In the times ahead, we can anticipate further advancements, including the extens
         compareMethod={DiffMethod.CHARS}
         splitView={true}
         hideLineNumbers
-        showDiffOnly
+        // showDiffOnly
         styles={defaultStyles}
       />
     );
@@ -118,7 +118,7 @@ In the times ahead, we can anticipate further advancements, including the extens
           className="py-6 md:py-10 px-4 bg-stone-50 border-y font-mono leading-tight tracking-tight text-sm"
         >
           {comparisonResult && (
-            <div className="w-full pb-6">
+            <div className="w-full pb-6 text-xs md:text-sm leading-none">
               <div className="w-full border-2 py-3 px-3 rounded-xl bg-white">
                 {comparisonResult}
               </div>

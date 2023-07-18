@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <header className="shrink-0">
       <nav className="px-4">
-        <div className="grid grid-cols-2 py-4 bg-stone-50">
+        <div className="hidden grid-cols-2 py-4 bg-stone-50 md:grid">
           <div className="space-x-4 flex items-stretch">
             <div className="w-40 h-14 bg-green-300 shrink-0 mr-5"></div>
             <div className="flex-1 h-full min-h-full">
