@@ -1,8 +1,9 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
- 
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+import { Locale } from "../../i18n.config";
+
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export function delay(ms: number) {
@@ -10,7 +11,6 @@ export function delay(ms: number) {
     setTimeout(resolve, ms);
   });
 }
-
 
 export const defaultStyles = {
   variables: {
@@ -88,3 +88,5 @@ export const defaultStyles = {
   // titleBlock?: {}, // style object
   // splitView?: {}, // style object
 };
+
+export type TypeLang = { params: { lang: Locale } };
