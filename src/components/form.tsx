@@ -115,7 +115,7 @@ In the times ahead, we can anticipate further advancements, including the extens
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="py-6 md:py-10 px-4 bg-stone-100 font-mono leading-tight tracking-tight text-sm"
+          className="py-6 md:py-10 px-4 bg-stone-50 border-y font-mono leading-tight tracking-tight text-sm"
         >
           {comparisonResult && (
             <div className="w-full pb-6">
@@ -132,32 +132,9 @@ In the times ahead, we can anticipate further advancements, including the extens
             </div>
           )}
 
-          <div className="w-full grid md:grid-cols-3 grid-cols-1 pb-6 font-sans">
-            <div className="flex items-center justify-center gap-4 flex-col md:flex-row">
-              <Button
-                type="button"
-                onClick={handleSwitchButtonClick}
-                size={"lg"}
-                variant={"outline"}
-                disabled={form.formState.isSubmitting}
-              >
-                Switch
-              </Button>
-            </div>
-            <div className=" grid place-items-center">
-              <Button
-                type="submit"
-                className="mx-auto bg-green-600 hover:bg-green-700 text-lg font-normal"
-                size={"lg"}
-                disabled={form.formState.isSubmitting}
-              >
-                Compare!
-                {form.formState.isSubmitting && (
-                  <LuLoader className="w-5 h-5 animate-spin duration-1000 ml-2" />
-                )}
-              </Button>
-            </div>
-            <div className=" grid place-items-center">
+          <div className="w-full grid md:grid-cols-2 grid-cols-1 pb-6 font-sans">
+            <div className=""></div>
+            <div className=" grid place-items-end">
               <Button
                 type="button"
                 onClick={clearAll}
@@ -166,9 +143,6 @@ In the times ahead, we can anticipate further advancements, including the extens
                 disabled={form.formState.isSubmitting}
               >
                 Clear All
-                {form.formState.isSubmitting && (
-                  <LuLoader className="w-5 h-5 animate-spin duration-1000 ml-2" />
-                )}
               </Button>
             </div>
           </div>
@@ -249,6 +223,29 @@ In the times ahead, we can anticipate further advancements, including the extens
                 </FormItem>
               )}
             />
+          </div>
+          <div className="grid place-items-center mx-auto pt-8 font-sans space-y-4">
+            <Button
+              type="submit"
+              className="mx-auto bg-green-500 hover:bg-green-600 text-green-50 text text-lg md:text-xl font-normal py-6"
+              size={"lg"}
+              disabled={form.formState.isSubmitting}
+            >
+              Compare!
+              {form.formState.isSubmitting && (
+                <LuLoader className="w-5 h-5 animate-spin duration-1000 ml-2" />
+              )}
+            </Button>
+            <Button
+              type="button"
+              onClick={handleSwitchButtonClick}
+              size={"lg"}
+              variant={"outline"}
+              className="text-lg md:text-xl py-6"
+              disabled={form.formState.isSubmitting}
+            >
+              Switch
+            </Button>
           </div>
         </form>
       </Form>
