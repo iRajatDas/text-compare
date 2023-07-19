@@ -90,3 +90,25 @@ export const defaultStyles = {
 };
 
 export type TypeLang = { params: { lang: Locale } };
+
+// Helper function to perform the "To lowercase" operation
+export const toLowerCase = (text: string): string => {
+  return text.toLowerCase();
+};
+
+// Helper function to perform the "Sort lines" operation
+export const sortLines = (text: string): string => {
+  const lines = text.split("\n");
+  lines.sort();
+  return lines.join("\n");
+};
+
+// Helper function to perform the "Replace line breaks with spaces" operation
+export const replaceLineBreaks = (text: string): string => {
+  return text.replace(/\n/g, " ");
+};
+
+// Helper function to perform the "Remove excess white space" operation
+export const removeExcessWhiteSpace = (text: string): string => {
+  return text.replace(/\s+/g, " ").trim();
+};

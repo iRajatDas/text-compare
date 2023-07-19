@@ -7,7 +7,7 @@ const About = () => {
       <div className="space-y-4 bg-white border shadow-xl">
         <div className="flex p-4 items-stretch space-x-6 space-y-6 flex-col md:flex-row">
           <div className="min-h-full shrink-0 grid place-items-center">
-            <div className="h-96 w-96 bg-green-300 shrink-0"></div>
+            <div className="h-96 w-72 bg-green-300 shrink-0"></div>
           </div>
           <div className="flex-1 min-h-full space-y-4">
             <h2 className="font-bold tracking-tight text-2xl md:text-3xl">

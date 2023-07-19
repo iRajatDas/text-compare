@@ -14,8 +14,20 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { defaultStyles, delay } from "@/lib/utils";
+import {
+  defaultStyles,
+  delay,
+  removeExcessWhiteSpace,
+  replaceLineBreaks,
+  sortLines,
+  toLowerCase,
+} from "@/lib/utils";
 import { LuLoader } from "react-icons/lu";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 const formSchema = z.object({
   original: z.string().optional(),
@@ -110,6 +122,31 @@ In the times ahead, we can anticipate further advancements, including the extens
       comparitor: "",
     });
   };
+
+  const handleToLowercaseClick = () => {
+    const { original, comparitor } = form.getValues();
+    form.setValue("original", toLowerCase(original!!));
+    form.setValue("comparitor", toLowerCase(comparitor!!));
+  };
+
+  const handleSortLinesClick = () => {
+    const { original, comparitor } = form.getValues();
+    form.setValue("original", sortLines(original!!));
+    form.setValue("comparitor", sortLines(comparitor!!));
+  };
+
+  const handleReplaceLineBreaksClick = () => {
+    const { original, comparitor } = form.getValues();
+    form.setValue("original", replaceLineBreaks(original!!));
+    form.setValue("comparitor", replaceLineBreaks(comparitor!!));
+  };
+
+  const handleRemoveExcessWhiteSpaceClick = () => {
+    const { original, comparitor } = form.getValues();
+    form.setValue("original", removeExcessWhiteSpace(original!!));
+    form.setValue("comparitor", removeExcessWhiteSpace(comparitor!!));
+  };
+
   return (
     <>
       <Form {...form}>
@@ -132,19 +169,53 @@ In the times ahead, we can anticipate further advancements, including the extens
             </div>
           )}
 
-          <div className="w-full grid md:grid-cols-2 grid-cols-1 pb-6 font-sans">
-            <div className=""></div>
-            <div className=" grid place-items-end">
-              <Button
-                type="button"
-                onClick={clearAll}
-                size={"lg"}
-                variant={"outline"}
-                disabled={form.formState.isSubmitting}
-              >
-                Clear All
-              </Button>
-            </div>
+          <div className="flex items-center justify-between py-6 font-sans">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button type="button" size={"lg"} variant={"outline"}>
+                  Edit Tools
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="mx-8 px-0 py-0 text-left">
+                <Button
+                  variant={"ghost"}
+                  className="w-full py-6 justify-start"
+                  onClick={handleToLowercaseClick}
+                >
+                  To lowercase
+                </Button>
+                <Button
+                  variant={"ghost"}
+                  className="w-full py-6 justify-start"
+                  onClick={handleSortLinesClick}
+                >
+                  Sort lines
+                </Button>
+                <Button
+                  variant={"ghost"}
+                  className="w-full py-6 justify-start"
+                  onClick={handleRemoveExcessWhiteSpaceClick}
+                >
+                  Remove excess white space
+                </Button>
+                <Button
+                  variant={"ghost"}
+                  className="w-full py-6 justify-start"
+                  onClick={handleReplaceLineBreaksClick}
+                >
+                  Replace line breaks with spaces
+                </Button>
+              </PopoverContent>
+            </Popover>
+            <Button
+              type="button"
+              onClick={clearAll}
+              size={"lg"}
+              variant={"outline"}
+              disabled={form.formState.isSubmitting}
+            >
+              Clear All
+            </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full min-h-full ">
             <FormField
