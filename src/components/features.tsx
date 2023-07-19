@@ -2,7 +2,7 @@ import React from "react";
 
 const Features = () => {
   return (
-    <div className="bg-stone-50 py-12">
+    <div className="bg-stone-100 py-12">
       <div className="py-12 px-4 space-y-4 bg-white border shadow-xl">
         <h2 className="font-bold tracking-tight text-2xl md:text-3xl">
           How to use the Text Compare

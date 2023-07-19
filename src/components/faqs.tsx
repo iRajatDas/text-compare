@@ -43,7 +43,7 @@ const faqs = [
 
 const Faqs = () => {
   return (
-    <section className="py-12 px-4 bg-stone-50">
+    <section className="py-12 px-4 bg-stone-100">
       <div className="space-y-6 sm:space-y-12">
         <h2 className="font-semibold text-2xl md:text-3xl tracking-tight text-center">
           Frequently Asked Questions

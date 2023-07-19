@@ -18,7 +18,7 @@ import Link from "next/link";
 
 const DesktopMenu = () => {
   return (
-    <div className="hidden grid-cols-2 py-4 bg-stone-50 md:grid">
+    <div className="hidden grid-cols-2 py-4 bg-stone-100 md:grid">
       <div className="space-x-4 flex items-stretch">
         <div className="w-40 h-14 bg-green-300 shrink-0 mr-5"></div>
         <div className="flex-1 h-full min-h-full">
@@ -37,7 +37,7 @@ const DesktopMenu = () => {
       </div>
       <div className="flex items-center justify-end">
         <div className="space-x-5 flex items-center">
-          <Button variant={"secondary"} size={"lg"} className="text-base">
+          <Button size={"lg"} className="text-base ">
             Blog
           </Button>
           <LocaleSwitcher />

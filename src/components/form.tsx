@@ -152,7 +152,7 @@ In the times ahead, we can anticipate further advancements, including the extens
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="py-6 md:py-10 px-4 bg-stone-50 border-t font-mono leading-tight tracking-tight text-sm"
+          className="py-6 md:py-10 px-4 bg-stone-100 border-t font-mono leading-tight tracking-tight text-sm"
         >
           {comparisonResult && (
             <div className="w-full pb-6 text-xs md:text-sm leading-none">

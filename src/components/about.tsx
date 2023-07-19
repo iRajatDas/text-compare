@@ -3,7 +3,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="bg-stone-50 py-12">
+    <div className="bg-stone-100 py-12">
       <div className="space-y-4 bg-white border shadow-xl">
         <div className="flex p-4 items-stretch space-x-6 space-y-6 flex-col md:flex-row">
           <div className="min-h-full shrink-0 grid place-items-center">
